@@ -5,7 +5,7 @@ class stt:
     def __init__(self):
         pass
 
-    def recognize_from_microphone(self):
+    def get_text(self):
         speech_config = speechsdk.SpeechConfig(subscription=API_KEY, endpoint=STT_ENDPOINT)
         speech_config.speech_recognition_language="en-US"
 
@@ -18,8 +18,8 @@ class stt:
         if speech_recognition_result.reason == speechsdk.ResultReason.RecognizedSpeech:
             return speech_recognition_result.text
         elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
-            return "Sorry I didn't catch that"
+            return "Unknown"
         else:
             return "Unknown"
 
-print(stt().recognize_from_microphone())
+# print(stt().get_text())

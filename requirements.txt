@@ -2,3 +2,4 @@ fastapi
 dotenv
 azure-cognitiveservices-speech
 openai
+uvicorn[standard]
