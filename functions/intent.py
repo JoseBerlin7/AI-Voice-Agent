@@ -1,4 +1,4 @@
-
+'''Purpose: Recognizing the intent of the message'''
 import os
 import base64
 from openai import AzureOpenAI

@@ -1,3 +1,4 @@
+'''Purpose: Converting the text to speech'''
 import azure.cognitiveservices.speech as speechsdk
 from config import API_KEY, STT_ENDPOINT
 

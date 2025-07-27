@@ -1,3 +1,5 @@
+'''Purpose: Converting the text to speech'''
+
 from dotenv import load_dotenv
 import azure.cognitiveservices.speech as speechsdk
 from config import API_KEY,AZURE_REGION, TTS_VOICE_ID

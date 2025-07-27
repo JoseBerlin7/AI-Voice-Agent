@@ -17,3 +17,11 @@ STT_ENDPOINT = os.getenv("STT_ENDPOINT")
 VAPI_API_KEY = os.getenv("VAPI_API_KEY")
 
 DATABASE_URL = "sqlite:///./data/calls.db"
+
+TWILIO_ACC_SID = os.getenv("TWILIO_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+TWILIO_NUM = os.getenv("TWILIO_NUMBER")
+
+OPENAI_API_KEY = os.getenv("API_KEY")
+
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")

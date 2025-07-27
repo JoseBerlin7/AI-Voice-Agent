@@ -1,5 +1,9 @@
 fastapi
-dotenv
-azure-cognitiveservices-speech
+uvicorn
+twilio
 openai
-uvicorn[standard]
+requests
+pydub
+sqlite3
+python-dotenv
+python-multipart

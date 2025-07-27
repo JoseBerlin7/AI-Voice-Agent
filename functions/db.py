@@ -1,3 +1,4 @@
+'''Purpose: Initialize the database and handling logs'''
 import sqlite3
 from datetime import datetime
 import os
