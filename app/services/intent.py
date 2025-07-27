@@ -1,17 +1,4 @@
-import os
-import openai
-from dotenv import load_dotenv
-
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-async def extract_intent(transcript: str) -> str:
-    prompt = f"Given the transcript: \"{transcript}\", extract the customer's intent (like \"schedule callback\", \"complaint\", \"resolve issue\")."
-    resp = await openai.ChatCompletion.acreate(
-        model="gpt‑4",
-        messages=[{"role": "user", "content": prompt}]
-    )
-    return resp.choices[0].message["content"].strip()
+'''Purpose: To find the intent of the query'''
 
 import openai
 from config import OPENAI_API_KEY

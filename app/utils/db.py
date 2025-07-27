@@ -1,3 +1,5 @@
+'''Purpose: to create the db and log the messages'''
+
 import sqlite3
 
 def init_db():
