@@ -102,7 +102,7 @@ async def conversation_callback(
     except Exception as e:
         print("Error in conversation callback:", e)
         vr = VoiceResponse()
-        vr.say("Sorry, something went wrong. Goodbye!")
+        vr.say("Sorry, something went wrong. please try again later! or wait for us to connect you to a agent")
         return Response(content=str(vr), media_type="text/xml")
     
 @router.get("/make_call/{to}")
@@ -133,4 +133,4 @@ async def outbound_entrypoint(From: str = Form(None), CallSid: str = Form(None))
 
     except Exception as e:
         print("Error in /outbound:", e)
-        return Response(content="Internal Server Error", status_code=500)
+        return Response(content="Sorry, we're experiencing some problem on our end, please try again later", status_code=500)
