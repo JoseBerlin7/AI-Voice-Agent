@@ -5,7 +5,7 @@ from fastapi.responses import Response
 import openai
 from twilio.twiml.voice_response import VoiceResponse
 from twilio.rest import Client
-from app.services import stt, intent, tts
+from app.services import generate_tts, transcribe_audio, extract_intent
 from app.utils.db import log_call
 from datetime import datetime
 from config import TWILIO_ACC_SID, TWILIO_AUTH_TOKEN, TWILIO_NUM
@@ -45,7 +45,7 @@ async def conversation_callback(
         with open(audio_file, "wb") as f:
             f.write(audio_response.content)
 
-        transcript = stt.transcribe_audio(audio_file)
+        transcript = transcribe_audio(audio_file)
         # print(transcript)
 
         if CallSid not in conversations:
@@ -76,10 +76,10 @@ async def conversation_callback(
         conversations[CallSid].append({"role": "assistant", "content": ai_reply})
 
 
-        intent_result = intent.extract_intent(transcript)
+        intent_result = extract_intent(transcript)
         log_call(From, "inbound", datetime.now().isoformat(), transcript, intent_result)
 
-        tts_url = tts.generate_tts(ai_reply)
+        tts_url = generate_tts(ai_reply)
 
         vr = VoiceResponse()
         if tts_url:
@@ -105,15 +105,15 @@ async def conversation_callback(
         vr.say("Sorry, something went wrong. Goodbye!")
         return Response(content=str(vr), media_type="text/xml")
     
-@router.get("/make_call")
-async def outbound_call():
+@router.get("/make_call/{to}")
+async def outbound_call(to):
     account_sid = TWILIO_ACC_SID
     auth_token = TWILIO_AUTH_TOKEN
     client = Client(account_sid, auth_token)
 
     call = client.calls.create(
-        url="https://d9a366c2c342.ngrok-free.app/outbound",
-        to="",
+        url="https://6333b05aa0cb.ngrok-free.app/outbound", # adjust the ngrok domain everytime you start ngrok
+        to=to,
         from_=TWILIO_NUM,
     )
     print(call.sid)
